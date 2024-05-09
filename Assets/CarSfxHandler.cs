@@ -33,7 +33,7 @@ public class CarSfxHandler : MonoBehaviour
 
         // Increase engine volume as car goes faster
         float desiredEngineVolume = velocityMagnitude * 0.05f;
-        desiredEngineVolume = Mathf.Clamp(desiredEngineVolume, 0.2f, 1.0f);
+        desiredEngineVolume = 0.5f  * Mathf.Clamp(desiredEngineVolume, 0.2f, 1.0f);
 
         engineAudioSource.volume = Mathf.Lerp(engineAudioSource.volume, desiredEngineVolume, Time.deltaTime * 1);
 
@@ -57,13 +57,26 @@ public class CarSfxHandler : MonoBehaviour
                 tireScreechingAudioSource.volume = Mathf.Abs(lateralVelocity) * 0.5f;
                 //tireScreechPitch = Mathf.Abs(lateralVelocity) * 0.1f;
                 //tireScreechingAudioSource.pitch = Mathf.Abs(lateralVelocity) * 1.2f;
-                tireScreechingAudioSource.pitch = Mathf.Lerp(Mathf.Abs(lateralVelocity) * 1.2f, 0.5f, Time.deltaTime * 1);
+                tireScreechingAudioSource.pitch = Mathf.Lerp(Mathf.Abs(lateralVelocity) * 1.2f, 0.5f, Time.deltaTime * 3);
             }
         }
         else {
             // Fade over time if no screeching
             tireScreechingAudioSource.volume = Mathf.Lerp(tireScreechingAudioSource.volume, 0, Time.deltaTime * 10);
             tireScreechingAudioSource.pitch = Mathf.Lerp(tireScreechPitch, 1f, Time.deltaTime * 1f);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision2D){
+        float relativeVelocity = collision2D.relativeVelocity.magnitude;
+
+        float volume = relativeVelocity * 0.1f;
+
+        carHitAudioSource.pitch = Random.Range(0.95f, 1.05f);
+        carHitAudioSource.volume = volume;
+
+        if (!carHitAudioSource.isPlaying){
+            carHitAudioSource.Play();
         }
     }
 }
