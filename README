@@ -1,0 +1,15 @@
+# To Add
+
+- Minimap logic (calculate position of car relative to track border, translate this to minimap image to move marker)
+	- Can we just divide the rescale the change in car position and move tracker similarly?
+
+- Add checkpoints around track
+	- Update UI with no. of check points passed
+
+- Add timer to show how long you have been racing
+- Add/update lap counter
+- Add "Game Over" when car crashes
+	- Option to start over or start at last checkpoint
+
+
+- Add ML Agent functionality

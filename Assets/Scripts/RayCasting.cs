@@ -6,6 +6,17 @@ using UnityEngine;
 
 public class RayCasting : MonoBehaviour
 {
+    private float distance_N, distance_NE, distance_NW, distance_E;
+    private float distance_W, distance_S;
+
+    public SpriteRenderer track;
+    private float normalizer;
+
+    private void Start(){
+        // Normalize sensors by the height of the track
+        normalizer = track.size.y;
+    }
+
     private void FixedUpdate(){
         Vector2 Direction = transform.up;
 
@@ -24,12 +35,12 @@ public class RayCasting : MonoBehaviour
         RaycastHit2D rayW = Physics2D.Raycast(transform.position, axisRotation_W);
         RaycastHit2D rayS = Physics2D.Raycast(transform.position, -Direction);
 
-        float distance_N = ray.distance;
-        float distance_NE = rayNE.distance;
-        float distance_NW = rayNW.distance;
-        float distance_E = rayE.distance;
-        float distance_W = rayW.distance;
-        float distance_S = rayS.distance;
+        distance_N = ray.distance;
+        distance_NE = rayNE.distance;
+        distance_NW = rayNW.distance;
+        distance_E = rayE.distance;
+        distance_W = rayW.distance;
+        distance_S = rayS.distance;
 
         // Draw Sensors for Debug purposes
         Debug.DrawRay(transform.position, Direction*distance_N, Color.black);
@@ -39,5 +50,29 @@ public class RayCasting : MonoBehaviour
         Debug.DrawRay(transform.position, axisRotation_W*distance_W, Color.green);
         Debug.DrawRay(transform.position, -Direction*distance_S, Color.black);
 
+    }
+
+    public float N_sensor(){
+        return distance_N/normalizer;
+    }
+
+    public float NE_sensor(){
+        return distance_NE/normalizer;
+    }
+
+    public float NW_sensor(){
+        return distance_NW/normalizer;
+    }
+
+        public float E_sensor(){
+        return distance_E/normalizer;
+    }
+
+        public float W_sensor(){
+        return distance_W/normalizer;
+    }
+
+        public float S_sensor(){
+        return distance_S/normalizer;
     }
 }
