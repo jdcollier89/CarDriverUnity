@@ -1,14 +1,18 @@
+A top-down 2D car racing game!
+
+![Screenshot](Car-Driver-Unity.png)
+
 # To Add
 
-- Minimap logic (calculate position of car relative to track border, translate this to minimap image to move marker)
+[COMPLETE] - Minimap logic (calculate position of car relative to track border, translate this to minimap image to move marker)
 	- Can we just divide the rescale the change in car position and move tracker similarly?
 
-- Add checkpoints around track
+[COMPLETE] - Add checkpoints around track
 	- Update UI with no. of check points passed
 
-- Add timer to show how long you have been racing
-- Add/update lap counter
-- Add "Game Over" when car crashes
+[COMPLETE] - Add timer to show how long you have been racing
+[COMPLETE] - Add/update lap counter
+[COMPLETE] - Add "Game Over" when car crashes
 	- Option to start over or start at last checkpoint
 
 
